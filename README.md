@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# Enterprise Customer Management Dashboard (SaaS CRM)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A production-quality, responsive **Customer Management Dashboard** built with **React**, **TypeScript**, **Tailwind CSS**, **React Router v7**, **Lucide Icons**, and **LocalStorage** persistence.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌟 Key Features
 
-### `npm start`
+- **🔐 Auth & Protected Routes**: Professional split-screen login page with form validation, show/hide password toggle, mock authentication, and route guards.
+- **📊 Dynamic Dashboard**: Welcome header, 4 dynamic KPI stat cards (Total Customers, Active Customers, Inactive Customers, Total Revenue MRR), system health status, and live activity audit log.
+- **📁 Customer Directory**:
+  - Real-time search across customer name, email.
+  - Multi-parameter status filtering (All, Active, Inactive).
+  - Alphabetical sorting (A-Z / Z-A) with directional indicators.
+  - Client-side pagination (5/10/20 rows per page) with automatic reset to page 1 on filter changes.
+  - Initials avatar generator with deterministic background colors.
+- **👁️ Customer Profile Drawer**: Desktop right-side slide-over drawer / Mobile modal layout displaying contact details, company, postal address (street, suite, city, zipcode), website link, status badge, created date, and estimated monthly value.
+- **⚡ Full CRUD Capabilities**:
+  - Add Customer page (`/customers/add`) with inline regex validation.
+  - Pre-filled Edit Customer modal.
+  - Delete Customer confirmation dialog with warning badge and keyboard accessibility.
+  - Auto-dismissing global toast notification stack.
+- **🌙 Dark & Light Theme**: High-contrast dark mode and clean light mode backed by `ThemeContext` and persisted in `localStorage`.
+- **📱 Intentionally Responsive**: Mobile slide-out navigation drawer with backdrop overlay, desktop-to-mobile table card conversion, and zero viewport overflow.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technology Stack
 
-### `npm test`
+- **Frontend Core**: React 19 + TypeScript
+- **Styling**: Tailwind CSS v3 (Dark Mode class strategy)
+- **Icons**: Lucide React
+- **Routing**: React Router DOM v7
+- **Data Fetching**: Native Fetch API + JSONPlaceholder (`https://jsonplaceholder.typicode.com/users`)
+- **State Management**: React Context API (`AuthContext`, `ThemeContext`, `ToastContext`, `CustomerContext`) & Native Hooks (`useState`, `useEffect`, `useMemo`, `useCallback`, `useDebounce`)
+- **Storage**: LocalStorage helper abstraction ([`storageService.ts`](src/services/storageService.ts))
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📂 Architecture & Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── components/
+│   ├── common/         # Reusable UI elements (Button, Badge, CustomerAvatar, ToastContainer, ConfirmDialog, LoadingSkeleton, EmptyState, ErrorState)
+│   ├── customers/      # Customer directory components (CustomerTable, CustomerRow, CustomerDetailsDrawer, SearchBar, StatusFilter, SortControl, Pagination)
+│   ├── dashboard/      # Dashboard cards and activity feed (StatCard, RecentActivity)
+│   ├── forms/          # Reusable customer form and edit modal (CustomerForm, EditCustomerModal)
+│   ├── layout/         # Shell framework (Sidebar, MobileSidebar, Header, Layout)
+│   └── ProtectedRoute.tsx
+├── context/            # Global state contexts (AuthContext, ThemeContext, ToastContext, CustomerContext)
+├── hooks/              # Custom utility hooks (useDebounce)
+├── pages/              # App routes (LoginPage, DashboardPage, CustomersPage, SettingsPage)
+├── services/           # Service layer (customerService.ts, storageService.ts)
+├── types/              # TypeScript interfaces and data models (index.ts)
+├── App.tsx             # Main routing configuration
+├── index.css           # Tailwind base directives and global custom styles
+└── index.tsx           # React entry point
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Getting Started
 
-### `npm run eject`
+### 1. Installation
+Clone the repository and install dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone <your-repo-url>
+cd task-1
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Running Locally
+Start the development server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
 
-## Learn More
+### 3. Building for Production
+To generate an optimized production build:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🧪 Type Checking & Build Verification
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Run strict TypeScript verification:
 
-### Analyzing the Bundle Size
+```bash
+npx tsc --noEmit
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Build verification status: **Passed (0 errors)**.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 💡 Discussion: Scaling to 100,000+ Customers
 
-### Advanced Configuration
+If scaling this dashboard to 100,000+ customer records with real enterprise backend APIs:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Server-Side Pagination & Filtering**: Shift pagination, search, and status filtering from client-side array operations to REST/GraphQL query parameters (`GET /api/v1/customers?page=1&limit=25&search=query`).
+2. **Debounced Search**: Apply a 300ms debounce to search inputs (`useDebounce`) to avoid unnecessary API requests.
+3. **Data Caching & Optimistic UI**: Integrate **TanStack Query (React Query)** or **SWR** for request deduplication, background revalidation, and instant optimistic updates.
+4. **DOM Virtualization**: Use `@tanstack/react-virtual` to window table rows and render only visible viewport items.
+5. **Database Indexing**: Back the backend with indexed database queries (PostgreSQL B-tree indexes on `email`, `name`, and `company_id`).
