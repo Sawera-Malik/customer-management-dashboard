@@ -9,7 +9,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../feactures/auth/hooks/AuthContext';
 
 interface MobileSidebarProps {
   isOpen: boolean;
