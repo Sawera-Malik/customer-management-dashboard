@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { MobileSidebar } from './MobileSidebar';
 import { Header } from './Header';
-import { ToastContainer } from '../common/ToastContainer';
+import { ToastContainer } from '../ui/Toast/ToastContainer';
 
 interface LayoutProps {
   children: React.ReactNode;
