@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../ui/Theme/ThemeContext';
+import { useAuth } from '../../feactures/auth/hooks/AuthContext';
 
 interface HeaderProps {
   onMenuClick: () => void;
