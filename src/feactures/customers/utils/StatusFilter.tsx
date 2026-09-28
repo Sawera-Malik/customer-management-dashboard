@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomerStatus } from '../../types';
+import { CustomerStatus } from '../../../types';
 import { Filter } from 'lucide-react';
 
 interface StatusFilterProps {
